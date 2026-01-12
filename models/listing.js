@@ -29,6 +29,10 @@ const listingSchema = new Schema({
       required: true
     }
   },
+  featured: {
+  type: Boolean,
+  default: false,
+},
 
   reviews: [
     {
@@ -43,7 +47,15 @@ const listingSchema = new Schema({
   },
   category:{
     type:String,
-    enum:["mountains","arctic","farms","deserts"],
+   enum: [
+  "Beach",
+  "City",
+  "Mountains",
+  "Desert",
+  "Arctic",
+  "Farms"
+]
+
   }
 });
 
