@@ -111,3 +111,29 @@ body{
     height:400px;
     width:80vh;
 }
+.wishlist-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: none;
+  background: white;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.wishlist-btn.active i {
+  color: #fe424d;
+}
+.listing-card {
+  transition: transform 0.3s ease, box-shadow 0.3s;
+}
+.listing-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+img {
+  content-visibility: auto;
+}

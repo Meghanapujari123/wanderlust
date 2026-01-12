@@ -32,6 +32,9 @@ const User = require("./models/user");
 const listingRouter = require("./routes/listing");
 const reviewRouter = require("./routes/review");
 const userRouter = require("./routes/user");
+const bookingRouter = require("./routes/booking");
+
+
 
 // =======================
 // DATABASE
@@ -113,6 +116,7 @@ app.use((req, res, next) => {
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
+app.use("/bookings", bookingRouter);
 
 // =======================
 // 404 HANDLER (NO "*")
@@ -132,7 +136,5 @@ app.use((err, req, res, next) => {
 // =======================
 // START SERVER
 // =======================
-app.listen(8080, () => {
-  console.log("server is listening on port 8080");
-});
 
+module.exports = app;

@@ -22,4 +22,21 @@ router
         userController.login
 );
 router.get("/logout",userController.logout);
+const Listing = require("../models/listing");
+const { isLoggedIn } = require("../middleware");
+
+router.post("/wishlist/:id", isLoggedIn, async (req, res) => {
+  const user = await User.findById(req.user._id);
+  const listingId = req.params.id;
+
+  if (user.wishlist.includes(listingId)) {
+    user.wishlist.pull(listingId);
+  } else {
+    user.wishlist.push(listingId);
+  }
+
+  await user.save();
+  res.redirect("back");
+});
+
 module.exports=router;

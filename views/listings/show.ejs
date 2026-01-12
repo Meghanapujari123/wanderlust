@@ -160,3 +160,9 @@
 
 <!-- MAP SCRIPT -->
 <script src="/js/map.js"></script>
+<form action="/bookings/<%= listing._id %>" method="POST">
+  <input type="date" name="checkIn" required>
+  <input type="date" name="checkOut" required>
+  <button class="btn btn-dark mt-2">Reserve</button>
+</form>
+
