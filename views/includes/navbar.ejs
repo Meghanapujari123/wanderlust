@@ -1,0 +1,146 @@
+<style>
+  .search-btn{
+    background-color: #fe424d;
+    color: white;
+    border-radius: 25px;
+    padding: 0 1rem;
+  }
+  .search-btn:hover{
+    background-color: #fe424d;
+    color: white;
+  }
+  .search-btn i{
+    margin-right: 0.5rem;
+  }
+  .search-inp{
+    border-radius:25px;
+    padding:0.5rem 3rem;
+    font-size: 1rem;
+  }
+</style>
+
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+
+    <!-- LOGO -->
+    <a class="navbar-brand" href="/listings">
+      <i class="fa-solid fa-compass"></i>
+    </a>
+
+    <!-- TOGGLER -->
+    <button 
+      class="navbar-toggler" 
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+      <!-- LEFT -->
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+
+        <!-- CATEGORIES -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+            Categories
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/listings/category/mountains">Mountains</a></li>
+            <li><a class="dropdown-item" href="/listings/category/arctic">Arctic</a></li>
+            <li><a class="dropdown-item" href="/listings/category/farms">Farms</a></li>
+            <li><a class="dropdown-item" href="/listings/category/deserts">Deserts</a></li>
+          </ul>
+        </li>
+      </div>
+
+      <!-- SEARCH -->
+      <div class="navbar-nav ms-auto position-relative">
+
+        <!-- SEARCH FORM -->
+        <form 
+          class="d-flex" 
+          method="GET" 
+          action="/listings/search" 
+          autocomplete="off"
+        >
+          <input
+            id="searchInput"
+            class="form-control me-2 search-inp"
+            type="search"
+            name="q"
+            placeholder="Search destinations"
+          />
+          <button class="btn search-btn" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>Search
+          </button>
+        </form>
+
+        <!-- SEARCH DROPDOWN -->
+        <div 
+          id="searchDropdown" 
+          class="dropdown-menu show w-100 mt-1"
+          style="display:none;"
+        >
+          <h6 class="dropdown-header">📍 Locations</h6>
+          <a class="dropdown-item search-option" data-value="Jaipur">Jaipur</a>
+          <a class="dropdown-item search-option" data-value="Manali">Manali</a>
+
+          <h6 class="dropdown-header">🌍 Countries</h6>
+          <a class="dropdown-item search-option" data-value="India">India</a>
+          <a class="dropdown-item search-option" data-value="France">France</a>
+
+          <h6 class="dropdown-header">📂 Categories</h6>
+          <a class="dropdown-item search-option" data-value="mountains">Mountains</a>
+          <a class="dropdown-item search-option" data-value="arctic">Arctic</a>
+          <a class="dropdown-item search-option" data-value="farms">Farms</a>
+          <a class="dropdown-item search-option" data-value="deserts">Deserts</a>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Airbnb your home</a>
+
+        <% if(!currUser){ %>
+          <a class="nav-link" href="/signup"><b>Sign up</b></a>
+          <a class="nav-link" href="/login"><b>Log in</b></a>
+        <% } %>
+
+        <% if(currUser){ %>
+          <a class="nav-link" href="/logout"><b>Log out</b></a>
+        <% } %>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+<script>
+  const searchInput = document.getElementById("searchInput");
+  const dropdown = document.getElementById("searchDropdown");
+  const options = document.querySelectorAll(".search-option");
+
+  // Show dropdown when input is focused
+  searchInput.addEventListener("focus", () => {
+    dropdown.style.display = "block";
+  });
+
+  // Hide dropdown when clicking outside search area
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".position-relative")) {
+      dropdown.style.display = "none";
+    }
+  });
+
+  // Click option → autofill + submit
+  options.forEach(option => {
+    option.addEventListener("click", () => {
+      searchInput.value = option.dataset.value;
+      dropdown.style.display = "none";
+      searchInput.form.submit();
+    });
+  });
+</script>
