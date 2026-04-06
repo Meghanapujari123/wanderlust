@@ -2,7 +2,7 @@
 
 A full-stack Airbnb-style web application built using **Node.js, Express, MongoDB, and EJS**, featuring authentication, listings, reviews, bookings, maps, and responsive UI.
 
-🔗 🔗 Live Demo: https://wanderlust-2-p7r3.onrender.com
+🔗 🔗 Live Demo: [https://wanderlust-2-p7r3.onrender.com](https://wanderlust-2-p7r3.onrender.com/listings)
 
 
 ---
